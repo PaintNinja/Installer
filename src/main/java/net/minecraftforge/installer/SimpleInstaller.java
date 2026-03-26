@@ -99,7 +99,7 @@ public class SimpleInstaller {
                 "sessionserver.mojang.com",
                 "authserver.mojang.com",
             }) {
-                monitor.message("Host: " + host + " [" + DownloadUtils.getIpString(host) + "]");
+                monitor.message("Host: " + host + " [" + DownloadUtils.getIpString(host) + ']');
             }
 
             for (String host : new String[] {
