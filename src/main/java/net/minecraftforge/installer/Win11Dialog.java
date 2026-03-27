@@ -13,8 +13,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.*;
 
-final class InstallerDialogFactory {
-    private static final String INSTALLER_TITLE = "Forge Installer";
+final class Win11Dialog {
     private static final Dimension CAPTION_BUTTON_SIZE = new Dimension(46, 30);
     private static final Color WINDOW_HIT_TEST_COLOR = new Color(255, 255, 255, 1);
     private static final Color TITLE_BAR_OVERLAY = new Color(255, 255, 255, 28);
@@ -22,15 +21,10 @@ final class InstallerDialogFactory {
     private static final Color CLOSE_BUTTON_PRESSED = new Color(143, 32, 20);
     private static final Color CLOSE_BUTTON_GLYPH = new Color(32, 32, 32);
 
-    private InstallerDialogFactory() {}
+    private Win11Dialog() {}
 
-    static JDialog createDialog(JOptionPane optionPane) {
-        return WindowsMicaEffect.isSupported() ? createWindows11Dialog(optionPane) : optionPane.createDialog(INSTALLER_TITLE);
-    }
-
-    private static JDialog createWindows11Dialog(JOptionPane optionPane) {
-        Window owner = null;
-        JDialog installerDialog = new JDialog(owner, INSTALLER_TITLE, Dialog.ModalityType.APPLICATION_MODAL);
+    static JDialog createWin11Dialog(JOptionPane optionPane, String title) {
+        JDialog installerDialog = new JDialog(null, title, Dialog.ModalityType.APPLICATION_MODAL);
         installerDialog.setUndecorated(true);
         installerDialog.setType(Window.Type.NORMAL);
         installerDialog.setContentPane(createInstallerChrome(installerDialog, optionPane));

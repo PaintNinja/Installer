@@ -255,11 +255,13 @@ public class InstallerPanel extends JPanel {
     public void run(ProgressCallback monitor) {
         JOptionPane optionPane = new JOptionPane(this, JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
 
-        dialog = InstallerDialogFactory.createDialog(optionPane);
-        if (WindowsMicaEffect.isSupported()) {
-            WindowsMicaEffect.prepare(optionPane);
-            WindowsMicaEffect.prepare(this);
-            WindowsMicaEffect.install(dialog);
+        if (Win11MicaEffect.isSupported()) {
+            dialog = Win11Dialog.createWin11Dialog(optionPane, "Forge Installer");
+            Win11MicaEffect.prepare(optionPane);
+            Win11MicaEffect.prepare(this);
+            Win11MicaEffect.install(dialog);
+        } else {
+            dialog = optionPane.createDialog("Forge Installer");
         }
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         dialog.setVisible(true);
